@@ -1,0 +1,458 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ensures padding and borders are included in the total width and height */
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden; /* Prevents horizontal scrolling if there's any overflow */
+}
+
+
+@font-face {
+    font-family: 'Motion';
+    src: url(media/MotionPersonalUseBold-2O0od.ttf);
+}
+
+.nav-font {
+    font-family: 'Roboto'; /* Apply the custom font only here */
+}
+
+.navbar {
+    width: 100%;
+    background-color: #CDB380;; /* Make background transparent */
+    color: rgb(41, 41, 41); /* Black text for contrast */
+    display: flex;
+    justify-content: space-between; /* This will push the nav elements to the edges */
+    align-items: center;
+    padding: 20px;
+    box-shadow: none; /* Remove shadow for a more transparent look */
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    width: calc(100% - 40px); /* Adjust width to account for padding */
+    display: flex;
+    justify-content: space-between; /* This ensures items are spaced out between */
+    align-items: center;
+}
+
+.nav-title {
+    text-decoration: none;
+    font-size: 50px;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    padding: 8px 16px; /* Consistent padding with links */
+}
+
+.nav-links a {
+    text-decoration: none;
+    padding: 8px 16px;
+    font-size: 30px;
+    font-weight: 500;
+    color: white; /* Ensure color is set for clarity */
+    transition: transform 0.3s ease-out; /* Enhance visibility of the transition */
+    display: inline-block; /* This ensures the transform applies correctly */
+}
+
+.nav-links a:hover {
+    transform: scale(1.15); /* Increase the scale slightly more for visibility */
+}
+
+
+
+.container {
+    width: 100%;
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+}
+
+.slides {
+    width: 100%;
+    height: 100vh;
+    scroll-snap-align: start;
+    position: relative; /* Ensures positioning context for children */
+    overflow: hidden;
+}
+
+.slide1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: visible;
+    background:  #CDB380;
+    /* background: linear-gradient(to bottom, #FFF2D7 0%, #CDB380 100%); */
+}
+
+
+.slide1 img {
+    max-width: 500px; /* Max width for the image */
+    width: 100%; /* Responsive width */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensures the image covers the designated area without distortion */
+    position: relative; /* Set position to relative to stack properly */
+}
+
+.overlay-content {
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust to center the content exactly */
+    width: 100%; /* Width should match the parent's width */
+    text-align: center;
+    z-index: 10; /* Higher than the image */
+}
+
+.slide1-text h3{
+    position: absolute;
+    top: 50%; /* Center the button vertically relative to the parent */
+    left: 50%; /* Center the button horizontally relative to the parent */
+    transform: translate(-300%, -150%); /* Ensure the button is exactly in the middle of the container */
+    z-index: 15; /* Higher than any other content to ensure it's clickable */
+    font-family: 'Roboto';
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    font-weight: 300;
+}
+
+.arrow {
+    border: solid rgb(255, 255, 255);
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 8px;
+}
+  
+.right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+.button-slide {
+    position: absolute;
+    top: 50%; /* Center the button vertically relative to the parent */
+    left: 50%; /* Center the button horizontally relative to the parent */
+    transform: translate(-320%, -105%); /* Ensure the button is exactly in the middle of the container */
+    z-index: 15; /* Higher than any other content to ensure it's clickable */
+}
+
+
+.slide1 h2 {
+    font-family: 'Roboto';
+    font-size: 30px;
+    font-weight: 300;
+    position: absolute;
+    bottom: 20px; /* Position at the bottom of the slide */
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgb(255, 255, 255);
+    z-index: 5;
+}
+
+
+.button-slide button {
+    background-color: #da2929;
+    border: 2px solid #474747;
+    color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-slide button:hover {
+    background-color: #b41212;
+}
+
+
+.gallery  {
+  
+    display: grid;
+    width: 500px;
+}
+.gallery > img {
+    grid-area: 1/1;
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border: 10px solid #f2f2f2;
+    box-shadow: 0 0 4px #0007;
+    animation: slide 12s infinite;
+}
+  .gallery > img:last-child {
+    animation-name: slide-last;
+  }
+  
+  .gallery > img:nth-child(2) { animation-delay: -3s; } 
+  .gallery > img:nth-child(3) { animation-delay: -6s; }
+  .gallery > img:nth-child(4) { animation-delay: -9s; }
+  
+  
+  @keyframes slide {
+    0%     {transform: translateX(0%)  ;z-index: 2;}
+    16.66% {transform: translateX(120%);z-index: 2;}
+    16.67% {transform: translateX(120%);z-index: 1;} 
+    33.34% {transform: translateX(0%)  ;z-index: 1;}
+    66.33% {transform: translateX(0%)  ;z-index: 1;}
+    66.34% {transform: translateX(0%)  ;z-index: 2;} 
+    100%   {transform: translateX(0%)  ;z-index: 2;}  
+  }
+  @keyframes slide-last {
+    0%     {transform: translateX(0%)  ;z-index: 2;}
+    16.66% {transform: translateX(120%);z-index: 2;}
+    16.67% {transform: translateX(120%);z-index: 1;} 
+    33.34% {transform: translateX(0%)  ;z-index: 1;}
+    83.33% {transform: translateX(0%)  ;z-index: 1;}
+    83.34% {transform: translateX(0%)  ;z-index: 2;} 
+    100%   {transform: translateX(0%)  ;z-index: 2;}  
+  }
+  
+.flash-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    display: none;
+    z-index: 9999; /* Ensure it covers everything */
+    opacity: 0; /* Start fully transparent */
+}
+
+@keyframes gradualFlash {
+    0% { opacity: 0; }
+    50% { opacity: 1; } /* Peak brightness at half-time */
+    100% { opacity: 0; }
+}
+
+
+.button-container {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 100%; /* Ensure it spans the full width of its parent if needed */
+}
+
+.more-details {
+    background-color: #ffffff; /* White background for visibility */
+    color: #CDB380; /* Text color for contrast */
+    border: 2px solid hsl(40, 44%, 65%); /* Border color to match the slide background */
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif; /* Ensuring it uses Roboto */
+    font-size: 16px;
+    font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    text-decoration: none;
+}
+
+.more-details:hover {
+    background-color: #e2e2e2; /* Change background on hover for feedback */
+}
+
+/* Ensure slide2 has proper styling for layout */
+.slide2 {
+    position: relative; /* Needed for absolute positioning of its children */
+    display: flex; /* Flex layout for centering content */
+    align-items: center; /* Vertical alignment */
+    justify-content: center; /* Horizontal centering */
+    min-height: 100vh; /* Full viewport height */
+    background: #CDB380; /* Background color */
+}
+
+#works {
+    padding-top: 70px; /* Adjust this value based on the actual height of your navbar */
+    background-color: #CDB380;
+}
+
+/* Grid Container for images */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    grid-gap: 20px; /* Spacing between images */
+    padding: 20px;
+    margin-top: 50px;
+}
+
+.grid-container img {
+    width: 100%;  /* Ensures the image takes the full width of the grid column */
+    height: 400px; /* Fixed height for all images */
+    object-fit: cover; /* Ensures the image covers the area without distorting aspect ratio */
+    border: 2px solid #ffffff; /* Optional: Keeps the outline style as mentioned */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow for depth */
+}
+
+.image-container {
+    border: 10px solid #ffffff;
+    position: relative;
+    width: 100%;
+    height: 300px; /* Match the fixed height of images */
+    overflow: hidden; /* Keeps everything neat */
+    border-radius: 30px; /* Rounded corners */
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 300px; /* Match the fixed height of images */
+    overflow: hidden; /* Keeps everything neat */
+    border-radius: 10px; /* Rounded corners */
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease; /* Smooth transition for zoom effect */
+}
+
+.image-container .image-text {
+    font-size: 12px; /* Smaller font size */
+    font-family: 'Roboto', sans-serif; /* Roboto font */
+    position: absolute;
+    top: 30px; left: 30px; right: 30px; bottom: 30px; /* Margin around the text box */
+    background-color: rgba(205, 179, 128, 0.9); /* Semi-transparent background matching #CDB380 */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    opacity: 0; /* Initially hidden */
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 5px; /* Slightly rounded corners */
+}
+
+.image-container:hover .image-text {
+    opacity: 1; /* Show text when hovering */
+}
+
+
+.info-button {
+    font-family: 'Roboto', sans-serif; /* Ensuring it uses Roboto */
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 20px;
+    background-color: #ffffff; /* White background for visibility */
+    color: #CDB380; /* Text color for contrast */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none; /* Removes underline from links */
+    margin-top: auto; /* Pushes the button to the bottom */
+    display: none; /* Initially hidden */
+}
+
+.image-container:hover .info-button {
+    display: block; /* Show the button on hover */
+}
+
+.image-container:hover img {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+.slide5 {
+    background: #CDB380;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh; /* Ensures it fills the viewport height */
+}
+
+.container1 {
+    background: white;
+    width: 800px;
+    height: 450px;
+    border-radius: 24px;
+    box-shadow: 16px 16px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+  .picture-container {
+  /*   border: 1px solid blue; */
+    width: 50%;
+    height: 100%;
+    align-self: flex-start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .contact-form-container {
+    height: 90%;
+    width: 300px;
+  }
+  
+  .contact-form {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+  }
+  
+  .form-header {
+    color: #CDB380;
+    font-family: 'Roboto';
+    font-size: 2em;
+    font-weight: 700;
+    align-self: flex-start;
+  }
+  
+  .userEmail {
+    border: none;
+    outline: none;
+    background: #eee;
+    padding: 20px;
+    border-radius: 6px;
+    width: 100%;
+    font-size: 100%;
+  }
+  
+  .emailBody {
+    border: none;
+    outline: none;
+    resize: none;
+    background: #eee;
+    padding: 20px;
+    border-radius: 6px;
+    width: 100%;
+    font-size: 100%;
+  }
+  
+  .submit {
+    border: none;
+    outline: none;
+    color: #fff;
+    width: 100%;
+    padding: 20px;
+    background: #CDB380;
+    font-size: 100%;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: transform 300ms 0s cubic-bezier(0, 0.23, 0.29, 2.45);
+  }
+  
+  .submit:hover {
+    cursor: pointer;
+    background: #c9a969;
+    transform: translateY(-2px);
+  }
